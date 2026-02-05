@@ -13,7 +13,7 @@ const intFields = [
 	'viewcount', 'postercount', 'followercount',
 	'deleted', 'locked', 'pinned', 'pinExpiry',
 	'timestamp', 'upvotes', 'downvotes',
-	'lastposttime', 'deleterUid',
+	'lastposttime', 'deleterUid','resolved',
 ];
 
 module.exports = function (Topics) {
@@ -22,20 +22,24 @@ module.exports = function (Topics) {
 			return [];
 		}
 
+		fields = Array.isArray(fields) ? fields : [];
+		
 		// "scheduled" is derived from "timestamp"
 		if (fields.includes('scheduled') && !fields.includes('timestamp')) {
 			fields.push('timestamp');
 		}
 
+		const isDefaultFetch = !fields || !fields.length;
+		const fieldsToFetch = isDefaultFetch ? [...intFields, 'title', 'slug', 'tags', 'thumbs'] : fields;
 		const keys = tids.map(tid => `topic:${tid}`);
-		const topics = await db.getObjects(keys, fields);
+		const topics = await db.getObjects(keys, fieldsToFetch);
 		const result = await plugins.hooks.fire('filter:topic.getFields', {
 			tids: tids,
 			topics: topics,
-			fields: fields,
+			fields: fieldsToFetch,
 			keys: keys,
 		});
-		result.topics.forEach(topic => modifyTopic(topic, fields));
+		result.topics.forEach(topic => modifyTopic(topic, fieldsToFetch));
 		return result.topics;
 	};
 
