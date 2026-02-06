@@ -157,6 +157,9 @@ paths:
             application/json:
               schema:
                 $ref: "components/schemas/CommonProps.yaml#/CommonProps"
+        "400":
+          description: Invalid request
+
 
 
 
