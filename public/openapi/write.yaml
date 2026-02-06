@@ -137,6 +137,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       requestBody:
         required: false
         content:
@@ -147,6 +148,7 @@ paths:
                 resolved:
                   type: number
                   description: Whether the topic is resolved (0 = no, 1 = yes)
+                  example: 1
       responses:
         "200":
           description: Topic resolved state updated
@@ -154,6 +156,7 @@ paths:
             application/json:
               schema:
                 $ref: "components/schemas/CommonProps.yaml#/CommonProps"
+
 
   /posts/{pid}:
     $ref: 'write/posts/pid.yaml'
