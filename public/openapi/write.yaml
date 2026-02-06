@@ -42,6 +42,10 @@ paths:
   /users/{uid}:
     $ref: 'write/users/uid.yaml'
 
+  /users/{uid}/sessions/{uuid}:
+    $ref: 'write/users/uid/sessions/uuid.yaml'
+
+
   /users/{uid}/picture:
     $ref: 'write/users/uid/picture.yaml'
 
@@ -192,3 +196,4 @@ paths:
 
   /files/:
     $ref: 'write/files.yaml'
+
