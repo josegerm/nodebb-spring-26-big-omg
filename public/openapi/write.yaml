@@ -136,6 +136,9 @@ paths:
   /categories/{cid}:
     $ref: 'write/categories/cid.yaml'
 
+  /categories/{cid}/count:
+    $ref: 'write/categories/cid/count.yaml'
+
   /topics/:
     $ref: 'write/topics.yaml'
 
