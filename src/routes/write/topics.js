@@ -64,14 +64,5 @@ module.exports = function () {
 	setupApiRoute(router, 'post', '/:tid/crossposts', [...middlewares, middleware.assert.topic], controllers.write.topics.crosspost);
 	setupApiRoute(router, 'delete', '/:tid/crossposts', [...middlewares, middleware.assert.topic], controllers.write.topics.uncrosspost);
 
-	// Toggle resolved status for a topic
-	setupApiRoute(router, 'put', '/:tid/resolved',
-		[...middlewares, middleware.assert.topic],
-		controllers.write.topics.markResolved);
-
-	setupApiRoute(router, 'delete', '/:tid/resolved',
-		[...middlewares, middleware.assert.topic],
-		controllers.write.topics.unmarkResolved);
-
 	return router;
 };
