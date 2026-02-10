@@ -507,6 +507,28 @@ define('forum/topic', [
 		}
 	}
 
+	// Bind Resolved / Unresolved buttons
+	$(document).on('click', '[component="topic/mark-resolved"]', function (e) {
+		e.preventDefault();
+		const tid = ajaxify.data.tid;
+
+		api.put(`/api/v3/topics/${tid}/resolved`, {
+			resolved: 1,
+		}).catch((err) => {
+			console.error(err);
+			alerts.error('Failed to mark as resolved');
+		});
+	});
+
+	$(document).on('click', '[component="topic/unmark-resolved"]', function (e) {
+		e.preventDefault();
+		const tid = ajaxify.data.tid;
+
+		api.delete(`/api/v3/topics/${tid}/resolved`).catch(() => {
+			alerts.error('Failed to mark as unresolved');
+		});
+	});
+
 
 	return Topic;
 });

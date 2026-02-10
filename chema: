@@ -1,0 +1,14 @@
+[1mdiff --git a/src/routes/write/topics.js b/src/routes/write/topics.js[m
+[1mindex 7539fc0..246d8b0 100644[m
+[1m--- a/src/routes/write/topics.js[m
+[1m+++ b/src/routes/write/topics.js[m
+[36m@@ -63,8 +63,7 @@[m [mmodule.exports = function () {[m
+ 	setupApiRoute(router, 'get', '/:tid/crossposts', [...middlewares, middleware.assert.topic], controllers.write.topics.getCrossposts);[m
+ 	setupApiRoute(router, 'post', '/:tid/crossposts', [...middlewares, middleware.assert.topic], controllers.write.topics.crosspost);[m
+ 	setupApiRoute(router, 'delete', '/:tid/crossposts', [...middlewares, middleware.assert.topic], controllers.write.topics.uncrosspost);[m
+[31m-[m
+[31m-	// Toggle resolved status for a topic[m
+[32m+[m[41m	[m
+ 	setupApiRoute(router, 'put', '/:tid/resolved',[m
+ 				  [...middlewares, middleware.assert.topic],[m
+ 				  controllers.write.topics.markResolved);[m

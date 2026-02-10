@@ -66,12 +66,12 @@ module.exports = function () {
 
 	// Toggle resolved status for a topic
 	setupApiRoute(router, 'put', '/:tid/resolved',
-				  [...middlewares, middleware.assert.topic],
-				  controllers.write.topics.markResolved);
+		[...middlewares, middleware.assert.topic],
+		controllers.write.topics.markResolved);
 
 	setupApiRoute(router, 'delete', '/:tid/resolved',
-				  [...middlewares, middleware.assert.topic],
-				  controllers.write.topics.unmarkResolved);
+		[...middlewares, middleware.assert.topic],
+		controllers.write.topics.unmarkResolved);
 
 	return router;
 };
